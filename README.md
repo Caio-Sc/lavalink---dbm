@@ -3,4 +3,4 @@ These are made to use with slash commands but should work with messages if you c
 
 Don't forget to change musica_connect with your lavalink server
 
-feel free to use it and edit it, just give credits if you talk about it c:
+feel free to use it and edit it, just give credits
