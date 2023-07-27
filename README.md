@@ -2,7 +2,7 @@
 These are made to use with slash commands, but should work with messages. If you change the files to use message instead of interaction
 ## musica_connect
 you will mostly change musica_connect and musica_play codes, the rest you can do within dbm. In musica_connect you will need to edit this part:
-![[Pasted image 20230726223331.png]]
+![[https://cdn.discordapp.com/attachments/1133458371501117671/1133459377618178108/image.png]]
 to connect to the lavalink server, and this part: 
 ![[Pasted image 20230726223355.png]]
 to change what happens when a song starts/queueEnds/bot is disconnected. for now, it is sending an embed when the song starts playing and disconnecting the bot when the queueEnd.
