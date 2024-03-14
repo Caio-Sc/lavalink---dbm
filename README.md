@@ -1,6 +1,6 @@
 # Lavalink + DBM actions made by me 
 
-This is powered by the Magmastream module player; what I did was make it work through DBM
+This is powered by the Magmastream player; what I did was make it work through DBM
 
 These are made to use with slash commands, but should work with messages. If you change the files to use message instead of interaction.
 
