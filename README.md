@@ -1,35 +1,39 @@
-# Lavalink + DBM actions made by me 
+## Detailed Explanation of Lavalink Integration with Discord Bot Maker (DBM)
 
-This is powered by the Magmastream player; what I did was make it work through DBM
+### Introduction
+The integration of Lavalink with DBM allows for seamless audio playback functionalities within your Discord bot. This readme provides detailed instructions on how to set up and customize the integration to suit your needs.
 
-These are made to use with slash commands, but should work with messages. If you change the files to use message instead of interaction.
+### Prerequisites
+1. Ensure you have the Magmastream player installed.
+2. Familiarity with Discord Bot Maker (DBM) and JavaScript.
 
-I'm sorry for this readme file.
+### Overview of Files
+- **musica_connect.js**: Responsible for connecting to the Lavalink server and defining actions for various events like song start, queue end, and bot disconnect.
+- **musica_play.js**: Handles the addition of music to the queue and formatting the message displayed when a song is added.
 
-## musica_connect
+### Configuration
 
-you will mostly change musica_connect and musica_play codes, the rest you can do within dbm. In musica_connect you will need to edit this part:
+#### Editing musica_connect.js
+1. **Connection Configuration**: Modify the code block indicated below to specify the connection details to your Lavalink server.
 
-![image](https://github.com/Caio-Sc/lavalink---dbm/assets/53196995/38cd0eb3-46a7-43c6-b850-d920c52f16e1)
+   ![image](https://github.com/Caio-Sc/lavalink---dbm/assets/53196995/38cd0eb3-46a7-43c6-b850-d920c52f16e1)
 
-to connect to the lavalink server, and this part:
+2. **Event Handling**: Customize the actions triggered when a song starts, the queue ends, or the bot disconnects. Adjust the code segment indicated below according to your requirements.
 
-![image](https://github.com/Caio-Sc/lavalink---dbm/assets/53196995/6e6b4a0b-ecfc-45fc-9f06-0d5fc86f7942)
+   ![image](https://github.com/Caio-Sc/lavalink---dbm/assets/53196995/6e6b4a0b-ecfc-45fc-9f06-0d5fc86f7942)
 
-to change what happens when a song starts/queueEnds/bot is disconnected. For now, it is sending an embed when the song starts playing and disconnecting the bot when the queueEnd. You can also uncomment trackEnd part if you would like to use it.
+   You can also enable the `trackEnd` functionality by uncommenting the relevant section.
 
-## musica_play
+#### Editing musica_play.js
+1. **Message Formatting**: Modify the code block indicated below to adjust how the message is displayed when a song is added to the queue. You may need to remove the hyperlink format if you're not using it within an embed.
+2. 
+   ![image](https://github.com/Caio-Sc/lavalink---dbm/assets/53196995/e690ac62-bebe-43a4-a1de-50b76cf2208e)
 
-in musica_play, you might want to edit this part:
+### Implementation
 
-![image](https://github.com/Caio-Sc/lavalink---dbm/assets/53196995/e690ac62-bebe-43a4-a1de-50b76cf2208e)
+1. **Integration Setup**: Place all `.js` files into the actions folder of your DBM project. This should automatically create a "Music Control" section within DBM.
+2. **Event Configuration**: Create an event in the event tab of DBM for one-time bot initialization. Utilize the `lavalink connect` action within this event to establish the connection with the Lavalink server.
 
-which you might want to use to send which music is added to the queue. Currently, it is the name of the song with hyperlink format to the song URL, but this won't work if you are not using it in an embed, so for normal messages you can just remove the "(link)" and the "\[]"
+### Conclusion
 
-## Conclusion
-
-These are made to use with slash commands. Just throw all .js files in the action's folder, and you should have a "Music Control" section in your dbm.
-Create an event for one time bot initialization in the event tab and use the lavalink connect there
-done. If you have a server, it should connect
-
-You will also need to install the "magmastream" module
+Following these steps, your Discord bot should be configured to seamlessly integrate with Lavalink for music playback. Ensure that the "magmastream" module is also installed to enable the necessary functionalities. Feel free to customize the integration further to suit your specific requirements. If done correctly, your bot should connect to the server and be ready to play music on your server.
