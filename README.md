@@ -28,5 +28,6 @@ which you might want to use to send which music is added to the queue. Currently
 
 These are made to use with slash commands. Just throw all .js files in the action's folder, and you should have a "Music Control" section in your dbm.
 Create an event for one time bot initialization in the event tab and use the lavalink connect there
-done, if you have a server, it should connect
-Almost forgot, but you need to install the "magmastream" module
+done. If you have a server, it should connect
+
+You will also need to install the "magmastream" module
