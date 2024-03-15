@@ -17,24 +17,25 @@ module.exports = {
   },
   html(isEvent, data) {
     return `
-            <div style="float: left; width: 60%;">
-                Channel ID (only for disconnects):<br>
-                <input id="channel" class="round" type="text">
-            </div>
-        `;
+      <div style="float: left; width: 60%;">
+          Channel ID (only for disconnects):<br>
+          <input id="channel" class="round" type="text">
+      </div>
+    `;
   },
   init() {},
   async action(cache) {
     try {
-      interaction = cache.interaction;
+      const interaction = cache.interaction;
       const client = this.getDBM().Bot.bot;
       const player = client.manager.get(interaction.guild.id);
-      player.queue.clear();
-      player.stop();
-      player.destroy();
-    } catch {
-      this.callNextAction(cache);
-      return;
+      if (player) {
+        player.queue.clear();
+        player.stop();
+        player.destroy();
+      }
+    } catch (error) {
+      console.error("Error stopping music:", error);
     }
     this.callNextAction(cache);
   },
