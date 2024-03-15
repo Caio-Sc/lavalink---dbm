@@ -20,14 +20,14 @@ module.exports = {
   },
   init() {},
   async action(cache) {
+    const client = this.getDBM().Bot.bot;
+    let interaction;
     try {
-      const client = this.getDBM().Bot.bot;
       interaction = cache.interaction;
       const player = client.manager.get(interaction.guild.id);
       player.pause(true);
-    } catch {
-      this.callNextAction(cache);
-      return;
+    } catch (error) {
+      console.error("Error pausing music:", error);
     }
     this.callNextAction(cache);
   },
