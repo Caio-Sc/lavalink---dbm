@@ -17,15 +17,15 @@ module.exports = {
   },
   html(isEvent, data) {
     return `
-            <div style="float: left; width: 60%;">
-                Song URL or Name:<br>
-                <input id="song" class="round" type="text">
-            </div><br>
-            <div style="float: left; width: 60%;">
-                Channel ID:<br>
-                <input id="channel" class="round" type="text">
-            </div>
-        `;
+      <div style="float: left; width: 60%;">
+          Song URL or Name:<br>
+          <input id="song" class="round" type="text">
+      </div><br>
+      <div style="float: left; width: 60%;">
+          Channel ID:<br>
+          <input id="channel" class="round" type="text">
+      </div>
+    `;
   },
   init() {},
   async action(cache) {
@@ -37,24 +37,21 @@ module.exports = {
     const interaction = cache.interaction;
 
     try {
-      // Search for tracks using a query or url, using a query searches youtube automatically and the track requester object
-      res = await client.manager.search(song, interaction.user);
-      // Check the load type as this command is not that advanced for basics
-      if (res.loadType === "empty") {
-        console.log("empty");
-        this.callNextAction(cache);
-        return;
-      }
-      if (res.loadType === "error") {
-        console.log("Could not find the song");
+      // Search for tracks using a query or url, using a query searches YouTube automatically and the track requester object
+      const res = await client.manager.search(song, interaction.user);
+
+      // Check the load type
+      if (res.loadType === "empty" || res.loadType === "error") {
+        console.error("Could not find the song");
         this.callNextAction(cache);
         return;
       }
     } catch (err) {
-      console.log("Error while searching for the song");
+      console.error("Error while searching for the song:", err);
       this.callNextAction(cache);
       return;
     }
+
     let player = client.manager.get(interaction.guild.id);
 
     if (!player) {
@@ -68,19 +65,23 @@ module.exports = {
     } else {
       player.setVoiceChannel(channelId);
     }
+
     player.connect();
     player.queue.string = "undefined";
+
     if (res.loadType === "playlist") {
       player.queue.string = `Playlist: [${res.playlist.name}](${song})`;
-      for (let i = 0; i < res.playlist.tracks.length; i++) {
-        player.queue.add(res.playlist.tracks[i]);
-      }
+      res.playlist.tracks.forEach((track) => player.queue.add(track));
     } else {
       player.queue.string = `[${res.tracks[0].title}](${res.tracks[0].uri}})`;
       player.queue.add(res.tracks[0]);
     }
+
     if (!player.playing && !player.paused) player.play();
+
     this.callNextAction(cache);
   },
-  mod() {},
+  mod() {
+    // Mod function implementation goes here if needed
+  },
 };
