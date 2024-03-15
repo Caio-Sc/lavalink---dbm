@@ -22,12 +22,13 @@ module.exports = {
   async action(cache) {
     try {
       const client = this.getDBM().Bot.bot;
-      interaction = cache.interaction;
+      const interaction = cache.interaction;
       const player = client.manager.get(interaction.guild.id);
-      player.stop();
-    } catch {
-      this.callNextAction(cache);
-      return;
+      if (player) {
+        player.stop();
+      }
+    } catch (error) {
+      console.error("Error skipping music:", error);
     }
     this.callNextAction(cache);
   },
