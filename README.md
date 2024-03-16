@@ -32,24 +32,24 @@ This overview provides a brief description of each file's purpose and functional
 #### Editing musica_connect.js
 1. **Connection Configuration**: Modify the code block indicated below to specify the connection details to your Lavalink server.
 
-   ```
+   
    ![image](https://github.com/Caio-Sc/lavalink---dbm/assets/53196995/38cd0eb3-46a7-43c6-b850-d920c52f16e1)
-   ```
+   
 
 2. **Event Handling**: Customize the actions triggered when a song starts, the queue ends, or the bot disconnects. Adjust the code segment indicated below according to your requirements.
 
-   ```markdown
+   
    ![image](https://github.com/Caio-Sc/lavalink---dbm/assets/53196995/6e6b4a0b-ecfc-45fc-9f06-0d5fc86f7942)
-   ```
+   
 
    You can also enable the `trackEnd` functionality by uncommenting the relevant section.
 
 #### Editing musica_play.js
 1. **Message Formatting**: Modify the code block indicated below to adjust how the message is displayed when a song is added to the queue. You may need to remove the hyperlink format if you're not using it within an embed.
 
-   ```markdown
+   
    ![image](https://github.com/Caio-Sc/lavalink---dbm/assets/53196995/e690ac62-bebe-43a4-a1de-50b76cf2208e)
-   ```
+   
 
 ### Implementation
 
