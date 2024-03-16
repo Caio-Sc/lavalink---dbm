@@ -32,7 +32,7 @@ This overview provides a brief description of each file's purpose and functional
 #### Editing musica_connect.js
 1. **Connection Configuration**: Modify the code block indicated below to specify the connection details to your Lavalink server.
 
-   ```markdown
+   ```
    ![image](https://github.com/Caio-Sc/lavalink---dbm/assets/53196995/38cd0eb3-46a7-43c6-b850-d920c52f16e1)
    ```
 
