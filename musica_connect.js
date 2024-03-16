@@ -1,6 +1,3 @@
-const { MessageEmbed } = require("discord.js");
-const { Manager } = require("magmastream");
-
 module.exports = {
   name: "LavaLinkConnect",
   displayName: "Connect to Lavalink server",
@@ -23,6 +20,8 @@ module.exports = {
   },
   init() {},
   async action(cache) {
+    const { MessageEmbed } = require("discord.js");
+    const { Manager } = require("magmastream");
     const client = this.getDBM().Bot.bot;
     
     // Initialize Lavalink manager
