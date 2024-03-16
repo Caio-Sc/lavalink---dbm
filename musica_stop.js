@@ -26,9 +26,9 @@ module.exports = {
   init() {},
   async action(cache) {
     try {
-      const interaction = cache.interaction;
+      const targetServer = await this.getServerFromData(0, null, cache);
       const client = this.getDBM().Bot.bot;
-      const player = client.manager.get(interaction.guild.id);
+      const player = client.manager.get(targetServer.id);
       if (player) {
         player.queue.clear();
         player.stop();

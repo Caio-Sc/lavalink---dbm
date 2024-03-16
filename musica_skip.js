@@ -22,8 +22,8 @@ module.exports = {
   async action(cache) {
     try {
       const client = this.getDBM().Bot.bot;
-      const interaction = cache.interaction;
-      const player = client.manager.get(interaction.guild.id);
+      const targetServer = await this.getServerFromData(0, null, cache);
+      const player = client.manager.get(targetServer.id);
       if (player) {
         player.stop();
       }

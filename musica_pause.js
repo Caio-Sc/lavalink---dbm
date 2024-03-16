@@ -21,10 +21,10 @@ module.exports = {
   init() {},
   async action(cache) {
     const client = this.getDBM().Bot.bot;
-    let interaction;
+    let targetServer;
     try {
-      interaction = cache.interaction;
-      const player = client.manager.get(interaction.guild.id);
+      targetServer = await this.getServerFromData(0, null, cache);
+      const player = client.manager.get(targetServer.id);
       player.pause(true);
     } catch (error) {
       console.error("Error pausing music:", error);

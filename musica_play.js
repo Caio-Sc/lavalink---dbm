@@ -8,7 +8,7 @@ module.exports = {
     author: "Caio Sclavi",
     authorUrl: "https://ko-fi.com/caiozin",
   },
-  fields: ["song", "channel"],
+  fields: ["song", "channel", "tchannel"],
   subtitle(data) {
     return `Play ${data.song} in channel ${data.channel}`;
   },
@@ -22,8 +22,12 @@ module.exports = {
           <input id="song" class="round" type="text">
       </div><br>
       <div style="float: left; width: 60%;">
-          Channel ID:<br>
+          Voice Channel ID:<br>
           <input id="channel" class="round" type="text">
+      </div>
+      <div style="float: left; width: 60%;">
+          Text Channel ID:<br>
+          <input id="tchannel" class="round" type="text">
       </div>
     `;
   },
@@ -33,13 +37,15 @@ module.exports = {
     const link = this.evalMessage(data.song, cache);
     const song = link.includes("&") ? link.split("&")[0] : link;
     const channelId = this.evalMessage(data.channel, cache);
+    const channelIdText = this.evalMessage(data.tchannel, cache);
     const client = this.getDBM().Bot.bot;
-    const interaction = cache.interaction;
-
+    const targetServer = await this.getServerFromData(0, null, cache);
+    const member = await this.getMemberFromData(1, null, cache);
+    let res;
     try {
       // Search for tracks using a query or url, using a query searches YouTube automatically and the track requester object
-      const res = await client.manager.search(song, interaction.user);
-
+      res = await client.manager.search(song, member.user);
+      console.log(res);
       // Check the load type
       if (res.loadType === "empty" || res.loadType === "error") {
         console.error("Could not find the song");
@@ -52,12 +58,12 @@ module.exports = {
       return;
     }
 
-    let player = client.manager.get(interaction.guild.id);
+    let player = client.manager.get(targetServer.id);
 
     if (!player) {
       player = client.manager.create({
-        guild: interaction.guild.id,
-        textChannel: interaction.channel.id,
+        guild: targetServer.id,
+        textChannel: channelIdText,
         voiceChannel: channelId,
         selfDeafen: true,
         volume: 100,

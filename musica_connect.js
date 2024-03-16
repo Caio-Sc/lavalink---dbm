@@ -23,7 +23,7 @@ module.exports = {
     const { MessageEmbed } = require("discord.js");
     const { Manager } = require("magmastream");
     const client = this.getDBM().Bot.bot;
-    
+
     // Initialize Lavalink manager
     client.manager = new Manager({
       nodes: [
@@ -47,7 +47,9 @@ module.exports = {
 
     // Event: Node encountered an error
     client.manager.on("nodeError", (node, error) => {
-      console.error(`Node "${node.options.identifier}" encountered an error: ${error.message}.`);
+      console.error(
+        `Node "${node.options.identifier}" encountered an error: ${error.message}.`
+      );
     });
 
     // Forward raw events to Magmastream

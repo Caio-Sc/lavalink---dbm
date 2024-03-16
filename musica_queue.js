@@ -27,11 +27,11 @@ module.exports = {
 
       <store-in-variable dropdownLabel="Store In" selectId="storage" variableContainerId="varNameContainer2" variableInputId="varName2"></store-in-variable>`;
   },
-  action(cache) {
+  async action(cache) {
     const data = cache.actions[cache.index];
     const client = this.getDBM().Bot.bot;
-    const interaction = cache.interaction;
-    const player = client.manager.get(interaction.guild.id);
+    const targetServer = await this.getServerFromData(0, null, cache);
+    const player = client.manager.get(targetServer.id);
 
     if (player) {
       const info = this.evalMessage(data.info, cache);
