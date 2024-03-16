@@ -21,13 +21,14 @@ module.exports = {
   init() {},
   async action(cache) {
     try {
-      interaction = cache.interaction;
+      const interaction = cache.interaction;
       const client = this.getDBM().Bot.bot;
       const player = client.manager.get(interaction.guild.id);
-      player.pause(false);
-    } catch {
-      this.callNextAction(cache);
-      return;
+      if (player) {
+        player.pause(false);
+      }
+    } catch (error) {
+      console.error("Error resuming music:", error);
     }
     this.callNextAction(cache);
   },
